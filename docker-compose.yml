@@ -1,0 +1,26 @@
+# Local / single-host deployment for Sage.
+#
+#   cp .env.example .env        # add your GROQ_API_KEY
+#   docker compose up --build
+#
+# The named volume `sage-data` persists the vector store, BM25 index, chats,
+# uploads and the HuggingFace model cache across container restarts.
+
+services:
+  sage:
+    build: .
+    image: sage-rag:latest
+    container_name: sage
+    ports:
+      - "8501:8501"
+    environment:
+      # Secrets / overrides come from .env (GROQ_API_KEY, plus any SAGE_* knobs).
+      GROQ_API_KEY: ${GROQ_API_KEY:?set GROQ_API_KEY in your .env}
+      SAGE_DATA_DIR: /data
+      SAGE_LOG_JSON: "true"
+    volumes:
+      - sage-data:/data
+    restart: unless-stopped
+
+volumes:
+  sage-data:

@@ -1,0 +1,105 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sage-rag"
+version = "1.0.0"
+description = "Sage — a personal, multi-format Retrieval-Augmented-Generation document assistant."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Gurri" }]
+keywords = ["rag", "retrieval", "llm", "streamlit", "chatbot", "langchain"]
+
+dependencies = [
+    # ---- Core RAG framework (LangChain 1.x, split packages) ----
+    "langchain>=1.0.0",
+    "langchain-classic>=1.0.0",      # chains + retrievers (moved here in v1)
+    "langchain-core>=1.0.0",
+    "langchain-community>=0.4.0",
+    "langchain-huggingface>=0.1.0",
+    "langchain-chroma>=0.1.4",
+    "langchain-groq>=0.2.0",
+    "langchain-text-splitters>=0.3.0",
+    # ---- Vector DB ----
+    "chromadb>=0.5.0",
+    # ---- Embeddings + reranker (local, free, CPU) ----
+    "sentence-transformers>=3.0.0",
+    "transformers>=4.43.0",
+    "torch>=2.3.0",
+    # ---- Sparse retrieval (BM25) for hybrid search ----
+    "rank-bm25>=0.2.2",
+    # ---- Document parsing (multi-format) ----
+    "pymupdf>=1.24.0",
+    "pypdf>=4.0.0",
+    "docx2txt>=0.8",
+    "openpyxl>=3.1.0",
+    "xlrd>=2.0.0",
+    # ---- App + config + utils ----
+    "streamlit>=1.36.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.3.0",
+    "python-dotenv>=1.0.0",
+    "numpy>=1.26.0",
+    "pandas>=2.2.0",
+]
+
+[project.optional-dependencies]
+eval = [
+    "ragas>=0.2.0",
+    "datasets>=2.20.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.6.0",
+    "mypy>=1.10.0",
+]
+
+[project.scripts]
+sage-ingest = "sage.ingest:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+sage = ["py.typed"]
+
+# --------------------------------------------------------------------------- #
+# Tooling
+# --------------------------------------------------------------------------- #
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+ignore = [
+    "E501",   # line length handled by formatter; long CSS/strings are fine
+    "B008",   # function calls in defaults (pydantic Field) are intentional
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011", "S101"]
+
+[tool.mypy]
+python_version = "3.10"
+packages = ["sage"]
+mypy_path = "src"
+ignore_missing_imports = true
+warn_unused_ignores = false
+warn_redundant_casts = true
+no_implicit_optional = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+pythonpath = ["src"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["sage"]
+omit = ["src/sage/ui.py"]   # Streamlit UI is exercised manually, not unit-tested

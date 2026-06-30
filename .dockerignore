@@ -1,0 +1,27 @@
+# Keep the build context small & secret-free.
+.git/
+.github/
+.venv/
+venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Secrets — never bake into the image (passed at runtime via env).
+.env
+.streamlit/secrets.toml
+
+# Persisted state — rebuilt inside the container's /data volume.
+chroma_db/
+indexes/
+chats/
+documents/
+eval_results*.csv
+
+# Docs / dev cruft
+tests/
+*.md
+!README.md

@@ -1,0 +1,47 @@
+# Runtime dependencies for Sage.
+#
+# Canonical source of truth is pyproject.toml. This file mirrors the runtime
+# deps for the common `pip install -r requirements.txt` workflow.
+#
+#   pip install -r requirements.txt          # runtime only
+#   pip install -e ".[dev,eval]"             # + tests, linters, RAGAS eval
+
+# ---- Core RAG framework (LangChain 1.x, split packages) ----
+langchain>=1.0.0
+langchain-classic>=1.0.0      # provides chains + retrievers (moved here in v1)
+langchain-core>=1.0.0
+langchain-community>=0.4.0
+langchain-huggingface>=0.1.0
+langchain-chroma>=0.1.4
+langchain-groq>=0.2.0
+langchain-text-splitters>=0.3.0
+
+# ---- Vector DB ----
+chromadb>=0.5.0
+
+# ---- Embeddings + reranker (local, free, CPU) ----
+sentence-transformers>=3.0.0
+transformers>=4.43.0
+torch>=2.3.0
+
+# ---- Sparse retrieval (BM25) for hybrid search ----
+rank-bm25>=0.2.2
+
+# ---- Document parsing (multi-format) ----
+pymupdf>=1.24.0          # PDF (layout-aware) backend
+pypdf>=4.0.0             # PDF fallback loader
+docx2txt>=0.8            # Word (.docx/.doc)
+openpyxl>=3.1.0          # Excel (.xlsx)
+xlrd>=2.0.0              # Excel (legacy .xls)
+
+# ---- App + config + utils ----
+streamlit>=1.36.0
+pydantic>=2.7.0
+pydantic-settings>=2.3.0
+python-dotenv>=1.0.0
+numpy>=1.26.0
+pandas>=2.2.0
+
+# ---- Evaluation (optional, used by scripts/eval.py) ----
+ragas>=0.2.0
+datasets>=2.20.0

@@ -1,0 +1,34 @@
+[
+  {
+    "question": "What is Actualisation?",
+    "ground_truth": "Actualisation is the organisation described across the company knowledge base; it focuses on its stated mission, vision and approach to delivering value to clients."
+  },
+  {
+    "question": "What are the core principles of Actualisation?",
+    "ground_truth": "The core principles are the foundational values and guiding beliefs that shape how Actualisation operates and makes decisions."
+  },
+  {
+    "question": "Who is on the Actualisation team?",
+    "ground_truth": "The team section describes the key people, their roles and expertise within Actualisation."
+  },
+  {
+    "question": "What branches does Actualisation have?",
+    "ground_truth": "Actualisation operates multiple branches as described in the Branches section."
+  },
+  {
+    "question": "What services does Actualisation offer?",
+    "ground_truth": "Actualisation provides a set of services described in the Services section, aimed at its target clients and industries."
+  },
+  {
+    "question": "Which industries does Actualisation serve?",
+    "ground_truth": "Actualisation serves the industries listed in the Industries section."
+  },
+  {
+    "question": "What technology does Actualisation use?",
+    "ground_truth": "The Technology section describes the tools, platforms and technical approach Actualisation relies on."
+  },
+  {
+    "question": "What is the mission or goal of the organisation?",
+    "ground_truth": "The organisation's mission and goals are stated in the introductory and about sections."
+  }
+]

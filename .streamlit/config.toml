@@ -1,0 +1,11 @@
+# Claude-style theme — warm "paper" background with the signature coral accent.
+[theme]
+base = "light"
+primaryColor = "#CC785C"               # Claude coral
+backgroundColor = "#FAF9F5"            # warm paper
+secondaryBackgroundColor = "#F0EEE6"   # sidebar / widgets
+textColor = "#2B2A27"
+font = "sans serif"
+
+[server]
+headless = true

@@ -1,0 +1,40 @@
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Personal documents (CVs etc. — not for public repo)
+documents/
+
+# Source PDFs (not for public repo)
+all pdf/
+
+# Vector store + indexes + persisted state (regenerate: python -m sage.ingest)
+chroma_db/
+indexes/
+chats/
+
+# Python
+.venv/
+venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+
+# Tooling caches
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Eval outputs
+eval_results*.csv
+
+# OS / editor
+.DS_Store
+.idea/
+*.swp
